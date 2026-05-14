@@ -1,0 +1,70 @@
+=== Local Plugin Last Update ===
+Contributors:      topher
+Tags:              plugins, admin, maintenance, updates, column
+Requires at least: 5.0
+Tested up to:      6.7
+Requires PHP:      7.2
+Stable tag:        1.1.0
+License:           GPLv2 or later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+
+Shows when each plugin was last updated on your server, right in the plugins list — with a sortable column header.
+
+== Description ==
+
+Ever wonder which plugins on your site haven't been touched in years? **Local Plugin Last Update** adds a "Last Updated" column to your WordPress plugins list that shows the last time each plugin's files were modified on your server.
+
+Unlike the "last updated" date shown in the plugin repository (which reflects when the author released a new version), this plugin shows you the actual file modification date on *your* installation — making it a practical tool for auditing stale plugins, identifying what changed after a bulk update, or just keeping tabs on your site.
+
+**Features:**
+
+* Adds a "Last Updated" column to the Plugins admin screen
+* Dates reflect real file modification times on your server
+* Column header is clickable — sort ascending or descending by date
+* Update-notice rows stay correctly paired with their plugin when sorting
+* Lightweight — one PHP file, no database queries, no external requests
+* No settings page needed — works immediately on activation
+
+== Installation ==
+
+1. Upload the `local-plugin-last-update` folder to the `/wp-content/plugins/` directory, **or** install directly from the WordPress plugin repository via **Plugins → Add New**.
+2. Activate the plugin through the **Plugins** menu in WordPress.
+3. Visit **Plugins** — the "Last Updated" column appears immediately.
+
+== Frequently Asked Questions ==
+
+= What date is being shown? =
+
+The date your server's filesystem last recorded a modification to the plugin's main PHP file. This changes when the plugin is installed, updated, or when the file is otherwise written to on disk. It is not the release date from the WordPress.org plugin repository.
+
+= Why is the date different from what I see on wordpress.org? =
+
+The wordpress.org repository shows when the plugin author published a new version. This plugin shows when the file on *your server* was last changed. If you installed a plugin a long time ago and it hasn't been updated since, those two dates can be very different.
+
+= Why doesn't sorting happen on the server side? =
+
+The WordPress plugins list isn't backed by a database query the way post lists are, so the standard `WP_List_Table` orderby mechanism doesn't apply. Sorting is handled in the browser using the file modification timestamps embedded in each row — it's fast and requires no additional requests.
+
+= Does this work with must-use plugins or drop-ins? =
+
+No — it only covers plugins shown in the standard Plugins admin screen.
+
+== Screenshots ==
+
+1. The Plugins screen with the "Last Updated" column visible.
+2. The column sorted in ascending order (oldest first).
+
+== Changelog ==
+
+= 1.1.0 =
+* Added sortable column header — click to sort ascending or descending by date.
+* Added machine-readable timestamp attribute to each cell to ensure accurate sorting.
+* Update-notice rows now stay correctly paired with their parent plugin row after sorting.
+
+= 1.0.0 =
+* Initial release.
+
+== Upgrade Notice ==
+
+= 1.1.0 =
+Adds sortable column support. No configuration changes needed — just update and click the column header to sort.
