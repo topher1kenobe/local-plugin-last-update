@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Local Plugin Last Update
+ * Plugin Name: Local Last Update
  * Description: Displays the date that plugins were last updated on this site, with a sortable column header.
  * Version: 1.1.0
  * Author: Topher
