@@ -2,39 +2,53 @@
 /**
  * Plugin Name: Local Last Update
  * Description: Displays the date that plugins were last updated on this site, with a sortable column header.
- * Version: 1.1.0
- * Author: Topher
+ * Version:           1.1.0
+ * Author:            Topher
  * Requires at least: 5.0
  * Requires PHP:      7.2
  * Tested up to:      6.9.4
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: local-plugin-last-update
+ * Text Domain:       local-last-update
+ *
+ * @package LocalPluginLastUpdate
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Adds a sortable "Last Updated" column to the WordPress plugins list table.
+ */
 class Plugin_Last_Updated_Column {
 
+	/**
+	 * Registers all hooks needed by this plugin.
+	 */
 	public function __construct() {
-		add_filter( 'manage_plugins_columns',          array( $this, 'add_column' ) );
+		add_filter( 'manage_plugins_columns', array( $this, 'add_column' ) );
 		add_filter( 'manage_plugins_sortable_columns', array( $this, 'sortable_column' ) );
-		add_action( 'manage_plugins_custom_column',    array( $this, 'render_column' ), 10, 3 );
-		add_action( 'admin_enqueue_scripts',           array( $this, 'enqueue_assets' ) );
+		add_action( 'manage_plugins_custom_column', array( $this, 'render_column' ), 10, 3 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 	}
 
 	/**
 	 * Register the "Last Updated" column.
+	 *
+	 * @param array $columns Existing columns array.
+	 * @return array Modified columns array with last_updated added.
 	 */
 	public function add_column( $columns ) {
-		$columns['last_updated'] = __( 'Last Updated', 'local-plugin-last-update' );
+		$columns['last_updated'] = __( 'Last Updated', 'local-last-update' );
 		return $columns;
 	}
 
 	/**
 	 * Declare the column as sortable so WordPress renders the header as a link.
+	 *
+	 * @param array $sortable Existing sortable columns array.
+	 * @return array Modified sortable columns array with last_updated added.
 	 */
 	public function sortable_column( $sortable ) {
 		$sortable['last_updated'] = 'last_updated';
@@ -44,9 +58,14 @@ class Plugin_Last_Updated_Column {
 	/**
 	 * Render the last-updated date for each plugin row.
 	 * Stores a Unix timestamp in data-timestamp so JS can sort accurately.
+	 *
+	 * @param string $column_name The name of the column being rendered.
+	 * @param string $plugin_file Path to the plugin file, relative to the plugins directory.
+	 * @param array  $plugin_data Plugin data array (not used; provided by WordPress hook).
+	 * @return void
 	 */
-	public function render_column( $column_name, $plugin_file, $plugin_data ) {
-		if ( $column_name !== 'last_updated' ) {
+	public function render_column( $column_name, $plugin_file, $plugin_data ) { // phpcs:ignore PluginCheck.CodeAnalysis.VariableAnalysis.UnusedVariable
+		if ( 'last_updated' !== $column_name ) {
 			return;
 		}
 
@@ -60,15 +79,18 @@ class Plugin_Last_Updated_Column {
 				esc_html( date_i18n( 'j M, Y', $modified_time ) )
 			);
 		} else {
-			echo '<em data-timestamp="0">' . esc_html__( 'Unknown', 'local-plugin-last-update' ) . '</em>';
+			echo '<em data-timestamp="0">' . esc_html__( 'Unknown', 'local-last-update' ) . '</em>';
 		}
 	}
 
 	/**
 	 * Enqueue CSS + JS on the plugins screen only.
+	 *
+	 * @param string $hook The current admin page hook suffix.
+	 * @return void
 	 */
 	public function enqueue_assets( $hook ) {
-		if ( $hook !== 'plugins.php' ) {
+		if ( 'plugins.php' !== $hook ) {
 			return;
 		}
 
@@ -86,6 +108,8 @@ class Plugin_Last_Updated_Column {
 	 * ?orderby=last_updated&order=asc|desc. This script detects those params
 	 * and reorders the rows by their data-timestamp values, keeping any
 	 * plugin-update-tr rows paired with their parent plugin row.
+	 *
+	 * @return string Inline JavaScript to handle client-side column sorting.
 	 */
 	private function sort_script() {
 		return <<<'JS'
