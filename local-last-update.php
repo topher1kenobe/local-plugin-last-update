@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Local Last Update
- * Description: Displays the date that plugins were last updated on this site, with a sortable column header.
- * Version:           1.1.0
+ * Plugin Name:       Local Last Update
+ * Description:       Displays the date that plugins were last updated on this site, with a sortable column header.
+ * Version:           1.1.1
  * Author:            Topher
  * Requires at least: 5.0
  * Requires PHP:      7.2
