@@ -1,4 +1,4 @@
-# Local Plugin Last Update
+# Local Last Update
 
 **Contributors:** topher1kenobe
 **Tags:** plugins, admin, maintenance, updates, column

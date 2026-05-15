@@ -1,4 +1,4 @@
-=== Local Plugin Last Update ===
+=== Local Last Update ===
 Contributors:      topher
 Tags:              plugins, admin, maintenance, updates, column
 Donate link:       https://heropress.com/donate
