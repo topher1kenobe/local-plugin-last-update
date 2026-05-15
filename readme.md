@@ -1,5 +1,15 @@
 # Local Plugin Last Update
 
+**Contributors:** topher1kenobe
+**Tags:** plugins, admin, maintenance, updates, column
+**Donate link:** https://heropress.com/donate
+**Requires at least:** 5.0
+**Tested up to:** 6.7
+**Requires PHP:** 7.2
+**Stable tag:** 1.0.0
+**License:** GPLv2 or later
+**License URI:** https://www.gnu.org/licenses/gpl-2.0.html
+
 A WordPress plugin that adds a sortable "Last Updated" column to the Plugins admin screen, showing when each plugin's files were last modified on your server.
 
 ## Description
