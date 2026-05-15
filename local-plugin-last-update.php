@@ -4,7 +4,12 @@
  * Description: Displays the date that plugins were last updated on this site, with a sortable column header.
  * Version: 1.1.0
  * Author: Topher
- * Text Domain: local-plugin-last-updated
+ * Requires at least: 5.0
+ * Requires PHP:      7.2
+ * Tested up to:      6.9.4
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: local-plugin-last-update
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,7 +29,7 @@ class Plugin_Last_Updated_Column {
 	 * Register the "Last Updated" column.
 	 */
 	public function add_column( $columns ) {
-		$columns['last_updated'] = __( 'Last Updated', 'local-plugin-last-updated' );
+		$columns['last_updated'] = __( 'Last Updated', 'local-plugin-last-update' );
 		return $columns;
 	}
 
@@ -55,7 +60,7 @@ class Plugin_Last_Updated_Column {
 				esc_html( date_i18n( 'j M, Y', $modified_time ) )
 			);
 		} else {
-			echo '<em data-timestamp="0">' . esc_html__( 'Unknown', 'local-plugin-last-updated' ) . '</em>';
+			echo '<em data-timestamp="0">' . esc_html__( 'Unknown', 'local-plugin-last-update' ) . '</em>';
 		}
 	}
 
