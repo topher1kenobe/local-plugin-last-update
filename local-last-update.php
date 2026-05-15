@@ -2,11 +2,11 @@
 /**
  * Plugin Name:       Local Last Update
  * Description:       Displays the date that plugins were last updated on this site, with a sortable column header.
- * Version:           1.1.1
+ * Version:           2.0.0
  * Author:            Topher
  * Requires at least: 5.0
  * Requires PHP:      7.2
- * Tested up to:      6.9.4
+ * Tested up to:      6.9
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       local-last-update
