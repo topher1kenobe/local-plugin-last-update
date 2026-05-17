@@ -1,5 +1,5 @@
 === Local Last Update ===
-Contributors:      topher
+Contributors:      topher1kenobe
 Tags:              plugins, admin, maintenance, updates, column
 Donate link:       https://heropress.com/donate
 Requires at least: 5.0
